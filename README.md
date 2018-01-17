@@ -1,3 +1,4 @@
+# License
   
 Copyright (c) 2018 Julian Soeren Lorenz, Carnegie Mellon University, All rights reserved.
 
@@ -22,6 +23,7 @@ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMA
 END OF LICENSE
 
 Author: Julian Soeren Lorenz
+
 Email:  JulianLorenz@live.de
 
 # wind_estimator ROS node
@@ -114,6 +116,8 @@ Observation equation z_p[k] = h(x_p[k])
 * Vg_g = Vw_g + R_f2g*Va_f
 * dP = eta * Vax_f^2
 
+# Contact
+For questions contact Julian Lorenz (JulianLorenz@live.de)
 
 
 
