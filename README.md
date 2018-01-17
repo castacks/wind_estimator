@@ -20,7 +20,42 @@ It runs multiple wind estimation algorithms and publishs the results in seperat 
 * wind_estimator/unfiltered/wind	 		geometry_msgs/TwistStamped 
 
 ## Implemented Algorithms
-### Wind Filter by Pulkit Goyal
+### Simple unfiltered wind calculation 
+
+Calculates a wind vector based on the estimated groundspeed and airspeed vector:
+
+Vw_g = Vg_g - Va_g
+
+### Moving Average Filter 
+
+Takes the moving average of the unfiltered wind vector over 3min.
+
+### Simple Wind Kalman Filter (SWKF)
+
+This is a simple 2D wind Kalman Filter, which assumes the wind and groundspeed to be constant.
+
+Variables:
+
+* Vg_g - 3D groundspeed vector in earth frame [m/s]
+* Vw_g - 3D windspeed vector in earth frame [m/s]
+* Va_g - 3D airspeed vector in earth frame [m/s] 
+
+
+State x[k] = [Vg_g,Vw_g]^T
+
+Measurement z[k] = [Vg_g,Va_g]^T
+
+
+Model: 
+
+* x_p[k] = x[k-1]
+
+Observation equation z_p[k] = h(x_p[k]): 
+
+* Vg_g = Vg_g
+* Va_g = Vg_g - Vw_g
+
+### Calibrating Extended Kalman Filter CEKF
 
 This filter employs an extended Kalman Filter with GNSS velocity and differential pressure from a pitottube as input. The output is a wind vector, an airspeed vector and a calibration factor for the pitottube. The filter's model assumes the wind and airspeed to be constant. 
 
@@ -53,36 +88,7 @@ Observation equation z_p[k] = h(x_p[k])
 * Vg_g = Vw_g + R_f2g*Va_f
 * dP = eta * Vax_f^2
 
-### Simple Wind Kalman Filter (SWKF) by Julian Lorenz
 
-This is a simple 2D wind Kalman Filter, which assumes the wind and groundspeed to be constant.
-
-Variables:
-
-* Vg_g - 2D groundspeed vector in earth frame [m/s]
-* Vw_g - 2D windspeed vector in earth frame [m/s]
-* Va_g - 2D airspeed vector in earth frame [m/s] 
-
-
-State x[k] = [Vg_g,Vw_g]^T
-
-Measurement z[k] = [Vg_g,Va_g]^T
-
-
-Model: 
-
-* x_p[k] = x[k-1]
-
-Observation equation z_p[k] = h(x_p[k]): 
-
-* Vg_g = Vg_g
-* Va_g = Vg_g - Vw_g
-
-### Simple unfiltered wind calculation 
-
-Calculates a wind vector based on the estimated groundspeed and airspeed vector:
-
-Vw_g = Vg_g - Va_g
 
 
  
