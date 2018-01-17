@@ -42,9 +42,7 @@ It runs multiple wind estimation algorithms and publishs the results in seperat 
 ## Published ROS topics
 
 Topic name | Message type
-
 --- | ---
-
 * wind_estimator/filter_frequency			| std_msgs/Float64
 
 * wind_estimator/cekf/wind					| geometry_msgs/TwistWithCovarianceStamped
