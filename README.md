@@ -55,7 +55,7 @@ Observation equation z_p[k] = h(x_p[k]):
 * Vg_g = Vg_g
 * Va_g = Vg_g - Vw_g
 
-### Calibrating Extended Kalman Filter CEKF
+### Calibrating Extended Kalman Filter (CEKF)
 
 This filter employs an extended Kalman Filter with GNSS velocity and differential pressure from a pitottube as input. The output is a wind vector, an airspeed vector and a calibration factor for the pitottube. The filter's model assumes the wind and airspeed to be constant. 
 
