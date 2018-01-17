@@ -41,25 +41,25 @@ It runs multiple wind estimation algorithms and publishs the results in seperat 
 
 ## Published ROS topics
 
-* wind_estimator/filter_frequency			std_msgs/Float64
+* wind_estimator/filter_frequency			| std_msgs/Float64
 
-* wind_estimator/cekf/wind					geometry_msgs/TwistWithCovarianceStamped
-* wind_estimator/cekf/wind/sigma			geometry_msgs/TwistStamped
-* wind_estimator/cekf/wind/3sig/upper		geometry_msgs/TwistStamped
-* wind_estimator/cekf/wind/3sig/lower		geometry_msgs/TwistStamped
-* wind_estimator/cekf/airspeed				geometry_msgs/TwistWithCovarianceStamped
-* wind_estimator/cekf/calibrationFactor		std_msgs/Float64
-* wind_estimator/cekf/turbulenceIntensity	std_msgs/Float64
+* wind_estimator/cekf/wind					| geometry_msgs/TwistWithCovarianceStamped
+* wind_estimator/cekf/wind/sigma			| geometry_msgs/TwistStamped
+* wind_estimator/cekf/wind/3sig/upper		| geometry_msgs/TwistStamped
+* wind_estimator/cekf/wind/3sig/lower		| geometry_msgs/TwistStamped
+* wind_estimator/cekf/airspeed				| geometry_msgs/TwistWithCovarianceStamped
+* wind_estimator/cekf/calibrationFactor		| std_msgs/Float64
+* wind_estimator/cekf/turbulenceIntensity	| std_msgs/Float64
 
-* wind_estimator/swkf/wind					geometry_msgs/TwistWithCovarianceStamped
-* wind_estimator/swkf/wind/sigma			geometry_msgs/TwistStamped
-* wind_estimator/swkf/wind/3sig/upper		geometry_msgs/TwistStamped
-* wind_estimator/swkf/wind/3sig/lower		geometry_msgs/TwistStamped
-* wind_estimator/swkf/turbulenceIntensity	std_msgs/Float64
+* wind_estimator/swkf/wind					| geometry_msgs/TwistWithCovarianceStamped
+* wind_estimator/swkf/wind/sigma			| geometry_msgs/TwistStamped
+* wind_estimator/swkf/wind/3sig/upper		| geometry_msgs/TwistStamped
+* wind_estimator/swkf/wind/3sig/lower		| geometry_msgs/TwistStamped
+* wind_estimator/swkf/turbulenceIntensity	| std_msgs/Float64
 
-* wind_estimator/unfiltered/wind			geometry_msgs/TwistStamped
+* wind_estimator/unfiltered/wind			| geometry_msgs/TwistStamped
 
-* wind_estimator/movingAverage/wind			geometry_msgs/TwistStamped
+* wind_estimator/movingAverage/wind			| geometry_msgs/TwistStamped
 
 ## Implemented Algorithms
 ### Simple unfiltered wind calculation 
