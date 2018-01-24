@@ -239,8 +239,13 @@ int main(int argc, char **argv)
     time_t t = time(0);   // get time now
     struct tm * now = localtime( & t );
     char logfilename[100];
-    sprintf(logfilename,"logs/wind_estimator_%04d_%02d_%02d_%02d_%02d_%02d.log",now->tm_year+1900,now->tm_mon+1,now->tm_mday,now->tm_hour,now->tm_min,now->tm_sec);
+    sprintf(logfilename,"wind_estimator_%04d_%02d_%02d_%02d_%02d_%02d.log",now->tm_year+1900,now->tm_mon+1,now->tm_mday,now->tm_hour,now->tm_min,now->tm_sec);
 	logfile.open(logfilename, std::ofstream::out);
+	if(logfile.is_open()){
+		ROS_INFO("Logfile successfully opened!");
+	}else{
+		ROS_WARN("Failed to open logfile!");
+	}
 	logfile << "# Log file of wind_estimator node" << endl;
 	logfile << "time \t"
 
