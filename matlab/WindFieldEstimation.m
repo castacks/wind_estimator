@@ -9,22 +9,25 @@ CEKF_states = CEKF_states(100:end,:);
 CEKF_var = CEKF_var(100:end,:);
 
 %% Set parameters
-sigma_n = 0.1;
-sigma_n_E2 = diag(CEKF_var(:,1)); sigma_n_E2 = sigma_n*eye(size(CEKF_states,1));
-sigma_n_N2 = diag(CEKF_var(:,2)); sigma_n_N2 = sigma_n*eye(size(CEKF_states,1));
-sigma_n_U2 = diag(CEKF_var(:,3)); sigma_n_U2 = sigma_n*eye(size(CEKF_states,1));
-
 l = 66.0342;
 sigma_f = 1.6508;
 
-l_E = 326.139;
-sigma_f_E = 2.165;
+l_E = 180;
+sigma_f_E = 1.85;
+sigma_n_E = 0.1;
 
-l_N = 157;
-sigma_f_N = 1.70;
+l_N = l_E;
+sigma_f_N = sigma_f_E;
+sigma_n_N = sigma_n_E;
 
-l_U = 770;
-sigma_f_U = 0.247;
+l_U = 2.137956813081712e+02;
+sigma_f_U = 0.353143217690198;
+sigma_n_U = 0.137248827677595;
+
+sigma_n = 0.1;
+sigma_n_E2 = diag(CEKF_var(:,1)); sigma_n_E2 = sigma_n_E*eye(size(CEKF_states,1));
+sigma_n_N2 = diag(CEKF_var(:,2)); sigma_n_N2 = sigma_n_N*eye(size(CEKF_states,1));
+sigma_n_U2 = diag(CEKF_var(:,3)); %sigma_n_U2 = sigma_n_U*eye(size(CEKF_states,1));
 
 %l = 50;
 %sigma_f = 0.1;

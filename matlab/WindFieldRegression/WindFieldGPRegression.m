@@ -10,7 +10,7 @@ K = zeros(N);
 % Compute covariance matrix K
 for i = 1:1:N
     for j = 1:1:N
-        K(i,j) = SquaredExponentialKernel(X_train(i),X_train(j),l,sigma_f);
+        K(i,j) = SquaredExponentialKernel(X_train(i,:),X_train(j,:),l,sigma_f);
     end
 end
 
