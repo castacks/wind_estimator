@@ -1,4 +1,4 @@
-function [fcn, grd] = WFGPOptimizeParams(hyperparams, X_train,y_train,whichVars,sigma_n2)
+function [fcn, grd] = WFGPOptimizeParams(hyperparams, X_train,y_train,whichVars,sigma_n)
 %WindFieldGPRegression
 %   Does a Gaussian Process Regression for 3-dim input samples X_train and
 %   1-dim output y_train, y_star with a squared exponential Kernel
@@ -20,9 +20,7 @@ end
 if whichVars(3) == 0
     sigma_n = eye(N) * exp(hyperparams(3));
 else
-    if exist('sigma_n2')
-        sigma_n = sigma_n2;
-    else
+    if exist('sigma_n') == 0
         sigma_n = eye(N) * whichVars(3);
     end
 end
@@ -57,7 +55,7 @@ if whichVars(2) == 0
     grd = [grd; -dlogp_df];
 end
 if whichVars(3) == 0
-    dlogp_dn = sigma_n*trace((alpha2*alpha2' - invK)*dKdn)/2;
+    dlogp_dn = mean(diag(sigma_n))*trace((alpha2*alpha2' - invK)*dKdn)/2;
     grd = [grd; -dlogp_dn];
 end
 

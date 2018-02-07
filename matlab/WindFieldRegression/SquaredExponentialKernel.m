@@ -1,3 +1,4 @@
+
 function [result] = SquaredExponentialKernel(x1,x2,l,sigma_f)
 %SquaredExponentialKernel
 %   SquaredExponentialKernel function

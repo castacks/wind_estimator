@@ -1,5 +1,6 @@
 function [y_star] = WindFieldGPRegression(X_train,y_train, X_test, l, sigma_f, sigma_n2)
 %WindFieldGPRegression
+
 %   Does a Gaussian Process Regression for 3-dim input samples X_train and
 %   1-dim output y_train, y_star with a squared exponential Kernel
 N = size(X_train,1);

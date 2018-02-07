@@ -12,9 +12,9 @@ CEKF_var = CEKF_var(100:end,:);
 %================================================================================
 % %% Find hyperparameters l, sigma_f of Kernel Function
 sigma_n = 0.1;
-sigma_n_E2 = diag(CEKF_var(:,1)); %sigma_n_E2 = sigma_n*eye(size(CEKF_states,1));
-sigma_n_N2 = diag(CEKF_var(:,2)); %sigma_n_N2 = sigma_n*eye(size(CEKF_states,1));
-sigma_n_U2 = diag(CEKF_var(:,3)); %sigma_n_U2 = sigma_n*eye(size(CEKF_states,1));
+sigma_n_E = diag(sqrt(CEKF_var(:,1))); %sigma_n_E2 = sigma_n*eye(size(CEKF_states,1));
+sigma_n_N = diag(sqrt(CEKF_var(:,2))); %sigma_n_N2 = sigma_n*eye(size(CEKF_states,1));
+sigma_n_U = diag(sqrt(CEKF_var(:,3))); %sigma_n_U2 = sigma_n*eye(size(CEKF_states,1));
 % Initial guess
 Nstarts = 20;
 l_samp = hypSample ([0.1 200], Nstarts); % for l
@@ -33,13 +33,13 @@ for i = 1:Nstarts
     fprintf('Optimizer run %d / %d\n',i,Nstarts);
     
     disp('Finding hyperparameters for East direction...');
-    [thetaE, fval(1,i)] = fminunc(@(hyperparams) WFGPOptimizeParams(hyperparams, localPosition, CEKF_states(:,1), whichVars, sigma_n_E2), inits(i,:), options);
+    [thetaE, fval(1,i)] = fminunc(@(hyperparams) WFGPOptimizeParams(hyperparams, localPosition, CEKF_states(:,1), whichVars, sigma_n_E), inits(i,:), options);
     
     disp('Done. Finding hyperparameters for North direction...');   
-    [thetaN, fval(2,i)] = fminunc(@(hyperparams) WFGPOptimizeParams(hyperparams, localPosition, CEKF_states(:,2), whichVars, sigma_n_N2), inits(i,:), options);
+    [thetaN, fval(2,i)] = fminunc(@(hyperparams) WFGPOptimizeParams(hyperparams, localPosition, CEKF_states(:,2), whichVars, sigma_n_N), inits(i,:), options);
     
     disp('Done. Finding hyperparameters for Vertical direction...');
-    [thetaU, fval(3,i)] = fminunc(@(hyperparams) WFGPOptimizeParams(hyperparams, localPosition, CEKF_states(:,3), whichVars, sigma_n_U2), inits(i,:), options);
+    [thetaU, fval(3,i)] = fminunc(@(hyperparams) WFGPOptimizeParams(hyperparams, localPosition, CEKF_states(:,3), whichVars, sigma_n_U), inits(i,:), options);
     disp('Done.');
     paramVecE = [paramVecE; fval(1,i) inits(i,:) thetaE];
     paramVecN = [paramVecN; fval(2,i) inits(i,:) thetaN];
@@ -74,9 +74,19 @@ sigma_f_U = 0.247;
 % U: l = 27.04; sigma_f = 0.2994; -logpyX = -297.34
 
 % For sigma_n = diag(stateCovariance) : 
-% E: l = 181.5; sigma_f = 1.8487; -logpyX = -197.80
-% N: l = 9.696; sigma_f = 1.8009; -logpyX =  787.72
-% U: l = 27.04; sigma_f = 0.2994; -logpyX = -297.34
+% E: l = 8.378; sigma_f = 1.6212; -logpyX =  560.66
+% N: l = 6.756; sigma_f = 1.9346; -logpyX =  864.65
+% U: l = 5.884; sigma_f = 0.2782; -logpyX = -78.853
+
+% For sigma_n = diag(sqrt(stateCovariance)) : 
+% E: l = 246.8; sigma_f = 1.7411; -logpyX = -285.18
+% N: l = 13.07; sigma_f = 1.8407; -logpyX =  704.16
+% U: l = 252.1; sigma_f = 0.2810; -logpyX = -208.14
+
+% For full optimization : 
+% E: l = 3021.; sigma_f = 2.8617; sigma_n = 0.1460; -logpyX = -307.08
+% N: l = 79.89; sigma_f = 3.1663; sigma_n = 0.2931; -logpyX =  195.45
+% U: l = 214.3; sigma_f = 0.3545; sigma_n = 0.1373; -logpyX = -342.37
 
 %% Plot Kernel function
 % r = 0:0.1:200;
