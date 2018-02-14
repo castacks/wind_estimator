@@ -1,0 +1,11 @@
+<!-- -->
+<launch>
+
+    <!-- module arguments -->
+    <arg name="output" default="screen"/>
+
+    <!-- Wind estimator node -->
+    <node name="wind_estimator" pkg="wind_estimator" type="wind_estimator" output="$(arg output)">
+    </node>
+
+</launch>
