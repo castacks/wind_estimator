@@ -34,10 +34,13 @@
 #include <geometry_msgs/Quaternion.h>
 #include <geometry_msgs/Vector3.h>
 
+#include <boost/array.hpp>
+
 namespace Util{
 	Eigen::Vector4d toVector4d(geometry_msgs::Quaternion q);
 	Eigen::Vector3d toVector3d(geometry_msgs::Vector3 rosvec);
 	boost::array<double,36> toBoostArray(Eigen::Matrix<double,6,6> eigenMatrix);
+	Eigen::Matrix<double,6,6> toEigenArray(boost::array<double,36> boostMatrix);
 	Eigen::Vector3d ENU2NED(Eigen::Vector3d enu);
 }
 

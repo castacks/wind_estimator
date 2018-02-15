@@ -60,6 +60,20 @@ boost::array<double,36> toBoostArray(Eigen::Matrix<double,6,6> eigenMatrix){
 	return result;
 }
 
+Eigen::Matrix<double,6,6> toEigenArray(boost::array<double,36> boostMatrix){
+	Eigen::Matrix<double,6,6> result;
+
+	int r = 0;
+	for(int i=0; i<6; i++){
+		for(int j = 0; j<6; j++){
+			result(i,j) = boostMatrix[r];
+			r++;
+		}
+	}
+
+	return result;
+}
+
 Eigen::Vector3d ENU2NED(Eigen::Vector3d enu){
 	Eigen::Vector3d result;
 	result(0) = enu(1);
